@@ -1,0 +1,67 @@
+{
+  "tasks": [
+    {
+      "id": "compile_core",
+      "name": "Compile Core",
+      "priority": 1,
+      "depends_on": [],
+      "duration_ms": 500
+    },
+    {
+      "id": "compile_utils",
+      "name": "Compile Utils",
+      "priority": 1,
+      "depends_on": [],
+      "duration_ms": 300
+    },
+    {
+      "id": "compile_api",
+      "name": "Compile API",
+      "priority": 2,
+      "depends_on": ["compile_core", "compile_utils"],
+      "duration_ms": 400
+    },
+    {
+      "id": "compile_ui",
+      "name": "Compile UI",
+      "priority": 2,
+      "depends_on": ["compile_core"],
+      "duration_ms": 600
+    },
+    {
+      "id": "test_core",
+      "name": "Test Core",
+      "priority": 3,
+      "depends_on": ["compile_core"],
+      "duration_ms": 800
+    },
+    {
+      "id": "test_api",
+      "name": "Test API",
+      "priority": 3,
+      "depends_on": ["compile_api", "test_core"],
+      "duration_ms": 700
+    },
+    {
+      "id": "test_ui",
+      "name": "Test UI",
+      "priority": 3,
+      "depends_on": ["compile_ui"],
+      "duration_ms": 900
+    },
+    {
+      "id": "package",
+      "name": "Package Application",
+      "priority": 4,
+      "depends_on": ["test_api", "test_ui"],
+      "duration_ms": 400
+    },
+    {
+      "id": "deploy",
+      "name": "Deploy to Production",
+      "priority": 5,
+      "depends_on": ["package"],
+      "duration_ms": 1000
+    }
+  ]
+}
